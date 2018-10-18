@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.github.emojitags.EmojiTagsView
+import com.github.emojitags.Emojiable
+import com.github.emojitags.TagsViewDataAdapter
 import com.github.emojitags.TagsViewStringAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,6 +29,20 @@ class MainActivity : Activity() {
         }
         container.addView(stringTagsView)
 
+
+        val objectTagsView = EmojiTagsView(this)
+        objectTagsView.adapter = TagsViewDataAdapter(DummyTag.getDummyTags())
+        (objectTagsView.adapter as TagsViewDataAdapter).listener = object : TagsViewDataAdapter.TagListener {
+            override fun onTagDismiss(tag: Emojiable) {
+                Toast.makeText(
+                    applicationContext,
+                    "Tag dismissed is" + (tag as DummyTag).id,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        container.addView(objectTagsView)
 
 
     }

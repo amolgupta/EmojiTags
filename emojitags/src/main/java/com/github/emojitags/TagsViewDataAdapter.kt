@@ -1,16 +1,14 @@
 package com.github.emojitags
 
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 
 
-class TagsViewStringAdapter(
-    var tags: List<String>
+class TagsViewDataAdapter(
+    var tags: List<Emojiable>
 ) : TagsViewAdapter() {
 
-    var listener: TagsViewStringAdapter.TagListener? = null
+    var listener: TagListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = Chip(parent.context)
@@ -18,9 +16,8 @@ class TagsViewStringAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder.view as Chip).text = "\uD83C\uDFAC" + tags[position]
+        (holder.view as Chip).text = "\uD83C\uDFAC" + tags[position].displayName()
         if (isCancelable) {
-            holder.view.isCloseIconVisible = true
             holder.view.isCloseIconVisible = true
             holder.view.setOnCloseIconClickListener {
                 listener?.onTagDismiss(tags[position])
@@ -31,6 +28,6 @@ class TagsViewStringAdapter(
     override fun getItemCount(): Int = tags.size
 
     interface TagListener {
-        fun onTagDismiss(tag: String)
+        fun onTagDismiss(tag: Emojiable)
     }
 }

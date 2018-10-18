@@ -1,6 +1,6 @@
 package com.github.emojitags
 
 interface Emojiable {
-    fun displayName()
-    fun alias()
+    fun displayName(): String
+    fun alias(): List<String>
 }

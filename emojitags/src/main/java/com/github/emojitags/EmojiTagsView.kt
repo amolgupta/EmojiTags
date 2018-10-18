@@ -20,7 +20,7 @@ open class EmojiTagsView constructor(
     var isCancelable: Boolean = false
     set(value){
         field = value
-        (adapter as TagsViewStringAdapter).isCancelable = field
+        (adapter as TagsViewAdapter).isCancelable = field
     }
     private val itemPadding: Int = 8
 
