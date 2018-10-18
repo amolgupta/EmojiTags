@@ -1,8 +1,6 @@
 package com.github.emojitags
 
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 
 
@@ -18,10 +16,9 @@ class TagsViewStringAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder.view as Chip).text = "\uD83C\uDFAC" + tags[position]
+        (holder.view as Chip).text = lookup(tags[position]) +" "+ tags[position]
+        holder.view.isCloseIconVisible = isCancelable
         if (isCancelable) {
-            holder.view.isCloseIconVisible = true
-            holder.view.isCloseIconVisible = true
             holder.view.setOnCloseIconClickListener {
                 listener?.onTagDismiss(tags[position])
             }

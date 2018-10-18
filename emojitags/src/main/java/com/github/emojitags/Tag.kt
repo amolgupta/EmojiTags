@@ -9,4 +9,8 @@ data class Tag(
     val tags: List<String>,
     val unicode_version: String,
     val ios_version: String
+
+
 )
+
+data class Tags(val tags: List<Tag>)

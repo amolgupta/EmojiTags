@@ -16,9 +16,9 @@ class TagsViewDataAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder.view as Chip).text = "\uD83C\uDFAC" + tags[position].displayName()
+        (holder.view as Chip).text = lookup(tags[position].alias()) +" "+ tags[position].displayName()
+        holder.view.isCloseIconVisible = isCancelable
         if (isCancelable) {
-            holder.view.isCloseIconVisible = true
             holder.view.setOnCloseIconClickListener {
                 listener?.onTagDismiss(tags[position])
             }

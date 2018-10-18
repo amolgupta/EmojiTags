@@ -19,7 +19,7 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
 
         val stringTagsView = EmojiTagsView(this)
-        stringTagsView.adapter = TagsViewStringAdapter(arrayListOf("asdfadf", "ddddd", "efe","afadf", "ddddd", "defefefefe","asdfadf", "ddddd", "defefefefe"))
+        stringTagsView.adapter = TagsViewStringAdapter(arrayListOf("blush", "laugh", "pray","india", "football", "bowling","red", "100", "angry"))
         stringTagsView.isCancelable = true
         (stringTagsView.adapter as TagsViewStringAdapter).listener = object : TagsViewStringAdapter.TagListener {
             override fun onTagDismiss(tag: String) {
@@ -28,7 +28,6 @@ class MainActivity : Activity() {
             }
         }
         container.addView(stringTagsView)
-
 
         val objectTagsView = EmojiTagsView(this)
         objectTagsView.adapter = TagsViewDataAdapter(DummyTag.getDummyTags())
