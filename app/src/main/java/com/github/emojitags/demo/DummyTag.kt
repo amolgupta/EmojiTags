@@ -22,8 +22,8 @@ data class DummyTag(
 
             return arrayListOf(
                 DummyTag("apple",1,"fruit","food"),
-                DummyTag("video",2,"youtube","music"),
-                DummyTag("Ford",3,"blush","Transport")
+                DummyTag("audio",2,"youtube","music"),
+                DummyTag("Car",3,"road","Transport")
             )
 
         }
