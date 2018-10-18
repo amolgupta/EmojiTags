@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 
 
-class TagsViewAdapter(
-    var tags: List<Emojiable>
-) : RecyclerView.Adapter<TagsViewAdapter.ViewHolder>() {
+class TagsViewStringAdapter(
+    var tags: List<String>
+) : RecyclerView.Adapter<TagsViewStringAdapter.ViewHolder>() {
 
-    var listener: TagListener? = null
+    var listener: TagsViewStringAdapter.TagListener? = null
 
     var isCancelable: Boolean = false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,8 +19,9 @@ class TagsViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        (holder.view as Chip).text = "\uD83C\uDFAC" + tags[position].displayName()
-        if (isCancelable){
+        (holder.view as Chip).text = "\uD83C\uDFAC" + tags[position]
+        if (isCancelable) {
+            holder.view.isCloseIconVisible = true
             holder.view.isCloseIconVisible = true
             holder.view.setOnCloseIconClickListener {
                 listener?.onTagDismiss(tags[position])
@@ -28,12 +29,11 @@ class TagsViewAdapter(
         }
     }
 
-
     override fun getItemCount(): Int = tags.size
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
     interface TagListener {
-        fun onTagDismiss(tag: Emojiable)
+        fun onTagDismiss(tag: String)
     }
 }

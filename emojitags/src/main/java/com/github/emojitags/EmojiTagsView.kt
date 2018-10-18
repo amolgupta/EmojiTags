@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
-import java.util.*
 
 
 open class EmojiTagsView constructor(
@@ -17,17 +16,11 @@ open class EmojiTagsView constructor(
     defStyleAttr: Int = R.style.tags_view
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
-    var items = ArrayList<String>()
-        set(value) {
-            field = value
-            (adapter as TagsViewAdapter).tags = items
-            adapter!!.notifyDataSetChanged()
-        }
 
     var isCancelable: Boolean = false
     set(value){
         field = value
-        (adapter as TagsViewAdapter).isCancelable = field
+        (adapter as TagsViewStringAdapter).isCancelable = field
     }
     private val itemPadding: Int = 8
 
@@ -38,7 +31,6 @@ open class EmojiTagsView constructor(
         layoutManager.justifyContent = JustifyContent.FLEX_START
         this.addItemDecoration(SpacesItemDecoration(itemPadding))
         this.layoutManager = layoutManager
-        this.adapter = TagsViewAdapter(items)
     }
 
     inner class SpacesItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
