@@ -31,6 +31,7 @@ implementation 'com.github.amolgupta:EmojiTags:master'
 ```
         <com.github.emojitags.EmojiTagsView
             android:id="@+id/view_emoji"
+            app:cancelable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 ```
@@ -66,8 +67,9 @@ view_emoji.cancelable = true
 
 - Support for collapsing
 - Optimise search for performance
-- Add test cases
 - Use Emoji as drawable instead of text
 
 ## Notes
 The text to emoji mapping is taken from [gemoji](https://github.com/github/gemoji/blob/master/db/emoji.json)
+This library uses Jetpack with AndroidX
+The chip is used from [Material components](https://material.io/develop/android/components/chip/)

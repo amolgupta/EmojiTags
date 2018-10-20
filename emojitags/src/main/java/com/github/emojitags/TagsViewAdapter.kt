@@ -4,7 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class TagsViewAdapter : RecyclerView.Adapter<TagsViewAdapter.ViewHolder>() {
-    var isCancelable: Boolean = false
+    var cancelable: Boolean = false
     lateinit var meta: List<Tag>
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)

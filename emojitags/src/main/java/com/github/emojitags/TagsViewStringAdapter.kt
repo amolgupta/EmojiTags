@@ -17,8 +17,8 @@ class TagsViewStringAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         (holder.view as Chip).text = lookup(tags[position]) +" "+ tags[position]
-        holder.view.isCloseIconVisible = isCancelable
-        if (isCancelable) {
+        holder.view.isCloseIconVisible = cancelable
+        if (cancelable) {
             holder.view.setOnCloseIconClickListener {
                 listener?.onTagDismiss(tags[position])
             }

@@ -2,9 +2,7 @@ package com.github.emojitags.demo
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import com.github.emojitags.EmojiTagsView
 import com.github.emojitags.Emojiable
 import com.github.emojitags.TagsViewDataAdapter
 import com.github.emojitags.TagsViewStringAdapter
@@ -29,7 +27,6 @@ class MainActivity : Activity() {
                 "angry"
             ) as List<String>
         )
-        view_emoji_strings.isCancelable = true
         (view_emoji_strings.adapter as TagsViewStringAdapter).listener = object : TagsViewStringAdapter.TagListener {
             override fun onTagDismiss(tag: String) {
                 Toast.makeText(applicationContext, "Tag dismissed", Toast.LENGTH_SHORT).show()

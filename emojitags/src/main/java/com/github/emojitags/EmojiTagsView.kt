@@ -24,11 +24,14 @@ open class EmojiTagsView constructor(
     constructor(context: Context, @Nullable attrs: AttributeSet?) : this(context, attrs, R.style.tags_view)
 
 
-    var isCancelable: Boolean = false
-        set(value) {
-            field = value
-            (adapter as TagsViewAdapter).isCancelable = field
+    var cancelable: Boolean = false
+    set(value) {
+        field = value
+        if(adapter != null) {
+            (adapter as TagsViewAdapter).cancelable = value
         }
+    }
+
     private val itemPadding: Int = 8
     val tags = getTags(context)
 
@@ -36,8 +39,9 @@ open class EmojiTagsView constructor(
         if (adapter !is TagsViewAdapter) {
             throw AssertionError("Adapter does not extend TagsViewAdapter")
         }
-        super.setAdapter(adapter)
+        adapter.cancelable = cancelable
         adapter.meta = tags
+        super.setAdapter(adapter)
     }
 
     init {
@@ -46,6 +50,12 @@ open class EmojiTagsView constructor(
         layoutManager.justifyContent = JustifyContent.FLEX_START
         this.addItemDecoration(SpacesItemDecoration(itemPadding))
         this.layoutManager = layoutManager
+        val attrs = context.obtainStyledAttributes(attrs, R.styleable.emoji_tags, R.attr.cancelable, defStyleAttr)
+        try {
+            cancelable = attrs.getBoolean(R.styleable.emoji_tags_cancelable, true)
+        } finally {
+            attrs.recycle()
+        }
     }
 
     inner class SpacesItemDecoration(private val space: Int) : RecyclerView.ItemDecoration() {
