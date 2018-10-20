@@ -9,5 +9,13 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+    <com.github.emojitags.EmojiTagsView
+            android:id="@+id/view_emoji_strings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
+    <com.github.emojitags.EmojiTagsView
+            android:id="@+id/view_emoji_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 </LinearLayout>

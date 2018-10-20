@@ -28,9 +28,14 @@ implementation 'com.github.amolgupta:EmojiTags:master'
 ## Usage
 
 #### With a list of strings
+```
+        <com.github.emojitags.EmojiTagsView
+            android:id="@+id/view_emoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+```
 
 ```
-val stringTagsView = EmojiTagsView(this)
 stringTagsView.adapter = TagsViewStringAdapter(arrayListOf("blush", "laugh", "pray","India", "football", "bowling","red", "100", "angry"))
 
 ```
@@ -39,18 +44,17 @@ stringTagsView.adapter = TagsViewStringAdapter(arrayListOf("blush", "laugh", "pr
 The data class must extend `Emojiable` interface and provide lookup fields
 
 ```
-val objectTagsView = EmojiTagsView(this)
-objectTagsView.adapter = TagsViewDataAdapter(DummyTag.getDummyTags())
+view_emoji.adapter = TagsViewDataAdapter(DummyTag.getDummyTags())
 ```   
 
 #### Show dismiss button
 ```
-stringTagsView.isCancelable = true
+view_emoji.cancelable = true
 ```     
 #### Add listener on dismiss
 
 ```
-(stringTagsView.adapter as TagsViewStringAdapter).listener = object : TagsViewStringAdapter.TagListener {
+(view_emoji.adapter as TagsViewStringAdapter).listener = object : TagsViewStringAdapter.TagListener {
            override fun onTagDismiss(tag: String) {
                Toast.makeText(applicationContext,"Tag dismissed",Toast.LENGTH_SHORT).show()
            }
@@ -61,10 +65,8 @@ stringTagsView.isCancelable = true
 ## Pending work
 
 - Support for collapsing
-- Support emoji fallback
 - Optimise search for performance
 - Add test cases
-- Properties via xml attributes
 - Use Emoji as drawable instead of text
 
 ## Notes

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -15,9 +16,12 @@ import java.lang.AssertionError
 
 open class EmojiTagsView constructor(
     context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = R.style.tags_view
+    attrs: AttributeSet?,
+    defStyleAttr: Int
 ) : RecyclerView(context, attrs, defStyleAttr) {
+
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, @Nullable attrs: AttributeSet?) : this(context, attrs, R.style.tags_view)
 
 
     var isCancelable: Boolean = false

@@ -12,25 +12,32 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
 
-    private val TAG: String? = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val stringTagsView = EmojiTagsView(this)
-        stringTagsView.adapter = TagsViewStringAdapter(arrayListOf("blush", "laugh", "pray","india", "football", "bowling","hat", "100", "angry"))
-        stringTagsView.isCancelable = true
-        (stringTagsView.adapter as TagsViewStringAdapter).listener = object : TagsViewStringAdapter.TagListener {
+        view_emoji_strings.adapter = TagsViewStringAdapter(
+            arrayListOf(
+                "blush",
+                "laugh",
+                "pray",
+                "india",
+                "football",
+                "bowling",
+                "hat",
+                "100",
+                "angry"
+            ) as List<String>
+        )
+        view_emoji_strings.isCancelable = true
+        (view_emoji_strings.adapter as TagsViewStringAdapter).listener = object : TagsViewStringAdapter.TagListener {
             override fun onTagDismiss(tag: String) {
-                Toast.makeText(applicationContext,"Tag dismissed",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Tag dismissed", Toast.LENGTH_SHORT).show()
             }
         }
-        container.addView(stringTagsView)
 
-        val objectTagsView = EmojiTagsView(this)
-        objectTagsView.adapter = TagsViewDataAdapter(DummyTag.getDummyTags())
-        (objectTagsView.adapter as TagsViewDataAdapter).listener = object : TagsViewDataAdapter.TagListener {
+        view_emoji_data.adapter = TagsViewDataAdapter(DummyTag.getDummyTags())
+        (view_emoji_data.adapter as TagsViewDataAdapter).listener = object : TagsViewDataAdapter.TagListener {
             override fun onTagDismiss(tag: Emojiable) {
                 Toast.makeText(
                     applicationContext,
@@ -39,9 +46,5 @@ class MainActivity : Activity() {
                 ).show()
             }
         }
-
-        container.addView(objectTagsView)
-
-
     }
 }
